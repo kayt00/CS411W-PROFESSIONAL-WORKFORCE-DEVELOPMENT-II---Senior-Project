@@ -1,0 +1,185 @@
+/* #black-bear-modal {
+    max-width: none !important;
+    width: 30% !important;
+} */
+
+.modal-content {
+    position: relative !important;
+    margin: auto !important;
+    background-color: rgba(0, 0, 0, 0.7) !important; 
+    color: #CFCFCF;
+}
+
+
+.modal-backdrop {
+    height: 100%;
+    width: 100%;
+    border-radius: 1em;
+    z-index: 20;
+    filter: blur(10px) !important;
+    -webkit-filter: blur(10px) !important;
+    box-shadow: #00000080 2px 3px 8px 0;
+    background-color: rgb(95, 95, 95) !important;
+}
+
+.modal-button {
+    float: right;
+    margin-right: 1.2em;
+    color: #8CE6BA;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
+.close {
+    font-size: 3em !important;
+    color: #CFCFCF !important;
+    font-weight: 500 !important;
+    opacity:inherit !important;
+}
+
+.modal-title {
+    font-size: 2.5em !important;
+    color: #8CE6BA;
+}
+
+.modal-header {
+    padding-left: 2em !important;
+    padding-bottom: 1em !important;
+}
+
+.modal-body {
+    padding-top: 0 !important;
+    padding-left: 2em !important;
+    padding-bottom: 0 !important;
+}
+
+.modal-category {
+    margin-bottom: 1.5em !important;
+    color: white !important;
+    font-weight: bold;
+}
+
+.modal-header {
+    border: none !important;
+}
+
+.modal-footer {
+    border: none !important;
+}
+
+#remove-button {
+    margin: 0 auto 1em auto;
+    background-color: #dddddd;
+    color: #d92d2d;
+    padding: 0.2em 1.5em;
+    border-radius: 1.5em;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    box-shadow: #00000080 2px 3px 8px 0;
+}
+
+#move-dropdown {
+    margin: 0 auto 1em auto;
+    background-color: #8CE6BA;;
+    color: black;
+    padding: 0.2em 1.5em;
+    border-radius: 1.5em;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    box-shadow: #00000080 2px 3px 8px 0;
+}
+
+.device-search {
+    margin-top: 2%;
+}
+
+.device-search .form-control {
+    display: block;
+    margin: auto;
+    text-align: center;
+    background-color: rgb(32, 32, 32);
+    font-size: 1.5em;
+    border-color: grey;
+}
+
+.device-search .form-control::placeholder {
+    color: #CFCFCF;
+}
+
+.section-header {
+    padding-left: 0.2em;
+    font-size: 2.2em;
+    color: #CFCFCF;
+    border-bottom: 1px solid #5e5e5ef8;
+}
+
+.device {
+    background-color: rgba(0, 0, 0, 0.432) !important;
+    width: auto;
+    margin: 5% auto auto auto;
+    cursor: pointer;
+}
+
+.device .card-body {
+    display: inline !important;
+    width: 80%;
+}
+
+.device .card-title {
+    font-size: 1.5em;
+    color: #8CE6BA;
+}
+
+.disconnected {
+    background-color: rgba(0, 0, 0, 0.432) !important;
+    width: auto;
+    margin: 5% auto auto auto;
+    cursor: pointer;
+    filter: brightness(0.5) !important;
+}
+
+.disconnected .card-body {
+    display: inline !important;
+    width: 80%;
+}
+
+.disconnected .card-title {
+    font-size: 1.5em;
+    color: #6bac8c;
+}
+
+.category {
+    margin-top: .5em;
+    color: white !important;
+    font-weight: bold;
+}
+
+.details {
+    margin-left: .5em;
+    display: inline !important;
+    width: 80%;
+    color: #CFCFCF !important;
+    font-weight: normal;
+}
+
+.open-arrow {
+    position: absolute;
+    color: white;
+    right: 10%;
+    bottom: 30%;
+    font-size: 4em;
+    height: .8em;
+}
+
+.not-connected {
+    padding-top: 1em;
+    padding-left: 0.2em;
+    font-size: 1.5em;
+    color: #df3c3c;
+}

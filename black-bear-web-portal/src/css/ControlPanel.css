@@ -1,0 +1,10 @@
+.control-panel {
+    margin-top: 15%;
+}
+
+.control-panel .btn {
+    height: 5em;
+    width: 20em;
+    display: block !important;
+    margin: 0 auto 1em auto;
+}

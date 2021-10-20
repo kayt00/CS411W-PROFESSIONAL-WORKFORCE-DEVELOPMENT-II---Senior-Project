@@ -1,0 +1,13 @@
+# Hosting static site from inside container:
+# bb_portal:
+#   build: .
+#   restart: always
+#   expose: ["80", "443"]
+#   ports: ["8090:80", "8091:443", "8092:22"]
+
+#Independent backend
+bb_portal:
+  image: seangalloway/black_bear
+  restart: always
+  expose: ["80", "443"]
+  ports: ["8090:80", "8091:443", "8092:22"]

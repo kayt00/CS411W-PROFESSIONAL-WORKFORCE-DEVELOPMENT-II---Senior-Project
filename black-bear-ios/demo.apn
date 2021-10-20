@@ -1,0 +1,9 @@
+{
+  "aps": {
+    "alert": "MFA Add Device Test",
+    "badge": 9,
+    "sound": "default",
+    "content-available" : 1,
+    "link_url": "blackbear://MFA/AddDevice"
+  }
+}

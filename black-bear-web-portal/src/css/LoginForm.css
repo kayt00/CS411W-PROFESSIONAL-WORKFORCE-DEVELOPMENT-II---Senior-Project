@@ -1,0 +1,97 @@
+.login-form .form-label {
+    margin: auto auto .5em auto;
+    text-align: center;
+    color: #CFCFCF;
+    display: block;
+    font-size: 2.2em;
+}
+
+.login-form .form-group {
+    margin-bottom: 2.5em;
+}
+
+@media screen and (min-height: 800px) {
+    .login-page {
+        display: block;
+    }
+}
+
+@media screen and (max-height: 801px) {
+    .login-page {
+        display: flex;
+    }
+}
+
+.login-form .form-control {
+    font-size: 2em;
+}
+
+.logo-text {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    color: #CFCFCF;
+}
+
+.login-button-disabled {
+    display: block;
+    margin: 0.5em auto 1em auto;
+    border-radius: 0.2em;
+    padding: 0 2em .1em 2em;
+    font-size: 2em;
+    color: black;
+    background-color: #539e7a;
+}
+
+.login-button {
+    display: block;
+    margin: 0.5em auto 1em auto;
+    border-radius: 0.2em;
+    padding: 0 2em .1em 2em;
+    font-size: 2em;
+    color: black;
+    background-color: #70D2A3;
+    border-color: #8CE6BA;
+}
+
+.login-button:hover, .login-button:focus {
+    background-color:  #65bd92 !important;
+    border-color: #65bd92 !important;
+    outline: none;
+    box-shadow: none !important;
+}
+
+.login-button:active {
+    background-color:  #4ca077 !important;
+    border-color: #4ca077 !important;
+    outline: none;
+    box-shadow: none !important;
+}
+
+.password-button {
+    display: block;
+    font-size: 1.2em;
+    text-align: center;
+    color:  #65bd92
+}
+
+.password-button:hover {
+    display: block;
+    font-size: 1.2em;
+    text-align: center;
+    color:  #4ca077
+}
+
+#incorrect-credentials-message {
+    color: red;
+    text-align: center;
+    height: 1.5em;
+    font-size: x-large;
+}
+
+/* modal */
+
+#admin-modal-header {
+    display: block;
+    padding: auto;
+}

@@ -1,0 +1,652 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "black-bear",
+        "version": "1.0.0",
+        "license": {
+            "name": "ISC"
+        },
+        "description": "Specification JSONs: [v2](/api-spec/v2), [v3](/api-spec/v3)."
+    },
+    "tags": [
+        {
+            "name": "auth",
+            "description": "Endpoints for logging in and adding users"
+        },
+        {
+            "name": "user",
+            "description": "Endpoints for viewing and updating user information"
+        },
+        {
+            "name": "device",
+            "description": "Endpoints for managing devices"
+        },
+        {
+            "name": "vlan",
+            "description": "Endpoints for managing VLANs"
+        },
+        {
+            "name": "randomData",
+            "description": "Endpoints for testing purposes that help populate the database with random data"
+        }
+    ],
+    "host": "localhost:8000",
+    "securityDefinitions": {
+        "api_key": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "paths": {
+        "/auth/add-user": {
+            "post": {
+                "summary": "Add a user after the initial admin is created",
+                "produces": [
+                    "application/json"
+                ],
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "description": "Authentication credentials",
+                        "schema": {
+                            "$ref": "#/definitions/AddUserModel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An string confirming the new user",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/register-initial-admin": {
+            "post": {
+                "summary": "Add the very first user on the system",
+                "responses": {},
+                "tags": [
+                    "auth"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "description": "Authentication credentials",
+                        "schema": {
+                            "$ref": "#/definitions/InitialAdminInfo"
+                        }
+                    }
+                ]
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "summary": "Login to get an authentication token",
+                "description": "",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "description": "Authentication credentials",
+                        "schema": {
+                            "$ref": "#/definitions/AuthCredentials"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An object containing the auth token",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "token": {
+                                    "type": "string"
+                                },
+                                "userRole": {
+                                    "type": "string",
+                                    "enum": ["STANDARD", "ADMIN"]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/user-profile": {
+            "get": {
+                "description": "Get a profile for a user based on the provide auth token",
+                "responses": {},
+                "tags": ["user"],
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/user/all": {
+            "get": {
+                "summary": "Get basic information about all users on the system",
+                "responses": {},
+                "tags": [
+                    "user"
+                ],
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/user/admin-user-exists": {
+            "get": {
+                "summary": "Determine if the initial admin has been registered",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "type": "boolean",
+                            "description": "Indicates whether the system has any register Admin Users"
+                        }
+                    }
+                },
+                "tags": [
+                    "user"
+                ]
+            }
+        },
+        "/device/all": {
+            "get": {
+                "summary": "Get all devices on the network",
+                "responses": {},
+                "tags": [
+                    "device"
+                ],
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/device/pending": {
+            "get": {
+                "summary": "Get all devices in pending status",
+                "responses": {},
+                "tags": [
+                    "device"
+                ],
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/device/approve": {
+            "post": {
+                "summary": "Approve a device in pending status",
+                "responses": {},
+                "tags": ["device"],
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "description": "Device approval object",
+                        "schema": {
+                            "$ref": "#/definitions/ApproveDeviceModel"
+                        }
+                    }
+                ]
+            }
+        },
+        "/device/add": {
+            "post": {
+                "summary": "Add a new device with status = 'pending_approval'",
+                "responses": {},
+                "tags": [
+                    "device"
+                ],
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "description": "Authentication credentials",
+                        "schema": {
+                            "$ref": "#/definitions/AddDeviceModel"
+                        }
+                    }
+                ]
+            }
+        },
+        "/device/disconnect": {
+            "post": {
+                "summary": "Disconnects a device from the network but retains record of it",
+                "responses": {},
+                "tags": [
+                    "device"
+                ],
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "description": "Authentication credentials",
+                        "schema": {
+                            "$ref": "#/definitions/DisconnectDeviceModel"
+                        }
+                    }
+                ]
+            }
+        },
+        "/device/{id}": {
+            "delete": {
+                "summary": "Disconnects a device from the network and forgets it completely",
+                "responses": {},
+                "tags": [
+                    "device"
+                ],
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "number"
+                    }
+                ]
+            }
+        },
+        "/device/move": {
+            "post": {
+                "summary": "Move a device across VLANs",
+                "responses": {},
+                "tags": [
+                    "device"
+                ],
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "description": "Authentication credentials",
+                        "schema": {
+                            "$ref": "#/definitions/MoveDeviceModel"
+                        }
+                    }
+                ]
+            }
+        },
+        "/vlan/all": {
+            "get": {
+                "summary": "Get all VLANs on the network",
+                "responses": {},
+                "tags": [
+                    "vlan"
+                ],
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/vlan/rename": {
+            "post": {
+                "summary": "Rename a VLAN",
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RenameVlanModel"
+                        }
+                    }
+                ],
+                "responses": {},
+                "tags": [
+                    "vlan"
+                ]
+            }
+        },
+        "/vlan/add": {
+            "post": {
+                "summary": "Add a new VLAN",
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "description": "Authentication credentials",
+                        "schema": {
+                            "$ref": "#/definitions/AddVlanModel"
+                        }
+                    }
+                ],
+                "responses": {},
+                "tags": [
+                    "vlan"
+                ]
+            }
+        },
+        "/vlan/remove": {
+            "post": {
+                "summary": "Remove a VLAN",
+                "responses": {},
+                "tags": [
+                    "vlan"
+                ],
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "description": "Authentication credentials",
+                        "schema": {
+                            "$ref": "#/definitions/RemoveVlanModel"
+                        }
+                    }
+                ]
+            }
+        },
+        "/randomData/addRandomVlans/{numberOfVlans}": {
+            "post": {
+                "summary": "Add VLANs with randomized data",
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "numberOfVlans",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {},
+                "tags": [
+                    "randomData"
+                ]
+            }
+        },
+        "/randomData/addRandomDevices/{numberOfDevices}": {
+            "post": {
+                "summary": "Add devices with randomized data",
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "numberOfDevices",
+                        "required": true,
+                        "description": "Number of devices to be added",
+                        "type": "number"
+                    },
+                    {
+                        "in": "query",
+                        "name": "onVlan",
+                        "default": null,
+                        "required": false,
+                        "description": "Vlan to add devices to - defaults to random",
+                        "type": "number"
+                    },
+                    {
+                        "in": "query",
+                        "name": "approved",
+                        "default": null,
+                        "required": false,
+                        "description": "Flag indicating if devices should be added without MFA approval - defaults to false",
+                        "type": "boolean"
+                    }
+                ],
+                "responses": {},
+                "tags": [
+                    "randomData"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "AuthCredentials": {
+            "type": "object",
+            "properties": {
+                "username": {
+                    "type": "string",
+                    "example": "root"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "123"
+                }
+            }
+        },
+        "AddUserModel": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "example": "jonh@blackbear.com"
+                },
+                "userRole": {
+                    "type": "string",
+                    "enum": [
+                        "ADMIN",
+                        "STANDARD"
+                    ],
+                    "example": "ADMIN"
+                }
+            }
+        },
+        "InitialAdminInfo": {
+            "type": "object",
+            "properties": {
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                }
+            }
+        },
+        "AddDeviceModel": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "MacAddress": {
+                    "type": "string"
+                },
+                "IPAddress":  {
+                    "type": "string"
+                },
+                "operatingSystem":  {
+                    "type": "string"
+                },
+                "manufacturer":  {
+                    "type": "string"
+                },
+                "uploadLimit": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "downloadLimit":  {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "vlan":  {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "ApproveDeviceModel": {
+            "type": "object",
+            "properties": {
+                "deviceId": {
+                    "type": "number",
+                    "format": "int64"
+                },
+                "vlan": {
+                    "type": "number",
+                    "format": "int64"
+                }
+            }
+        },
+        "DisconnectDeviceModel": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "MoveDeviceModel": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "toVlan": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "AddVlanModel": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "uploadLimit": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "downloadLimit": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "peakUpload": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "peakDownload": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "RenameVlanModel": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "RemoveVlanModel": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "relocateDevicesTo": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        }
+    }
+}

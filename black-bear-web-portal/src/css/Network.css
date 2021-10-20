@@ -1,0 +1,57 @@
+.vlan-card {
+    margin: 1em 0 0 0;
+    display: block;
+    width: 40%;
+    height: 3em;
+    padding: .6em;
+    background-color: rgba(117, 117, 117, 0.432) !important;
+    color: #CFCFCF;
+    cursor: pointer;
+}
+
+.vlan-card .card-body {
+    padding: 0;
+}
+
+.vlan-card .open-arrow {
+    position: absolute;
+    color: white;
+    right: 10%;
+    bottom: 30%;
+    font-size: 4em;
+    height: .2em;
+}
+
+#approve-button {
+    background-color: #8CE6BA;
+    padding: 0.5em 1.5em;
+    border-radius: 1.5em;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    box-shadow: #00000080 2px 3px 8px 0;
+    align-self: center;
+}
+
+#approve-button:active {
+    background-color: #c5f0db;
+    box-shadow: none;
+}
+
+#email-input {
+    border-radius: 5px;
+    margin: 0 1em;
+}
+
+.user-type-radio {
+    margin: 0 1em;
+}
+
+i {
+    margin-bottom: 3em;
+}
+
+.modal-footer {
+    justify-content: center;
+    padding-top: 3em;
+}

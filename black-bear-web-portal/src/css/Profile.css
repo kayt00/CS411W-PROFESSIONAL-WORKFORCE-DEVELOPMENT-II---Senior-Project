@@ -1,0 +1,11 @@
+#profile-page-header {
+    margin: 15px;
+    margin-bottom: 30px;
+    display: flex;
+    color: #CFCFCF;
+}
+
+#profile-picture {
+    font-size: 6em;
+    margin-right: 0.1em;
+}

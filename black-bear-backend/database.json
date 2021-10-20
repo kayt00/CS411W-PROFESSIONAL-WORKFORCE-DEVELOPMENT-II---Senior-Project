@@ -1,0 +1,11 @@
+{
+    "dev": {
+      "host": "localhost",
+      "user": "root",
+      "password" : "example",
+      "database": "BlackBear",
+      "driver": "mysql",
+      "multipleStatements": true,
+      "port": 13306
+    }
+  }

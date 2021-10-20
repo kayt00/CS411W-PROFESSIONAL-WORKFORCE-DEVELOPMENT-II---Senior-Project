@@ -1,0 +1,13 @@
+.green-link-button {
+    outline: none;
+    background-color: transparent;
+    color: #2EE88D;
+    border: none;
+}
+
+.red-link-button {
+    outline: none;
+    background-color: transparent;
+    color: #D90B0B;
+    border: none;
+}
